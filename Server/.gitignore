@@ -1,0 +1,9 @@
+/bin
+/ipch
+/obj
+*.lib
+*.exe
+*.sdf
+*.user
+*.opensdf
+*.suo

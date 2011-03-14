@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameNgine", "GameNgine.vcxproj", "{A216308D-9396-44AA-ADFA-8CFA016DA2E1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{47BC56ED-FECA-1BAD-6757-8A6300006755} = {47BC56ED-FECA-1BAD-6757-8A6300006755}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACE", "lib\ace\ACE_vc10.vcxproj", "{47BC56ED-FECA-1BAD-6757-8A6300006755}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A216308D-9396-44AA-ADFA-8CFA016DA2E1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A216308D-9396-44AA-ADFA-8CFA016DA2E1}.Debug|Win32.Build.0 = Debug|Win32
+		{A216308D-9396-44AA-ADFA-8CFA016DA2E1}.Release|Win32.ActiveCfg = Release|Win32
+		{A216308D-9396-44AA-ADFA-8CFA016DA2E1}.Release|Win32.Build.0 = Release|Win32
+		{47BC56ED-FECA-1BAD-6757-8A6300006755}.Debug|Win32.ActiveCfg = Debug|Win32
+		{47BC56ED-FECA-1BAD-6757-8A6300006755}.Debug|Win32.Build.0 = Debug|Win32
+		{47BC56ED-FECA-1BAD-6757-8A6300006755}.Release|Win32.ActiveCfg = Release|Win32
+		{47BC56ED-FECA-1BAD-6757-8A6300006755}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
