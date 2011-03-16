@@ -1,0 +1,4 @@
+- No binaries here (.SWF files in our case).
+
+- The .FLA sort of count as a binary file but we still need it for the IDE to work.
+So please use a lot of AS3 files; it's easier to follow your work on GitHub.

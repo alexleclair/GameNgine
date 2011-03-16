@@ -1,0 +1,18 @@
+========================
+    WORK IN PROGRESS
+========================
+Version 0.0.1 candidate
+	[Client]
+		N/A
+		+ Added a note for future development.
+	[Protocol]
+		+ Added a very basic documentation using plain text files.
+		+ The structure of the packets have been settled.
+	[Server]
+		+ Added an ASCII art at startup (hereby named graffiti)
+		+ Added a core implementation of the ACE Reactor pattern
+
+========================
+       RELEASED
+========================
+N/A

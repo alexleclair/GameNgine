@@ -1,0 +1,11 @@
+[Client]
+N/A
+
+[Server]
+- Add linux support (including ACE_wrappers)
+- Verify the signal handling system (I think it doesn't free up memory gracefully, normal or not?)
+- A configuration file that override config.h default settings when needed
+- Allow parameters for main() that override that configuration file.
+
+[Protocol]
+N/A

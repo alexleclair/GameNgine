@@ -1,0 +1,40 @@
+[Server port]
+	The server is running on port 4711 (using TCP/IP).
+
+
+[Protocol structure]
+        - (Size) 4 bytes unsigned integer saying how large our capsule will be.
+             This `size` integer itself is excluded from the length calculated.
+
+        - (Data) Data section. It must be exactly the size specified by `Size`.
+	
+	Notes:
+	1) Thoses two (Size & Data) sections are alternating continuously.
+	2) The data section may contain many capsules (command IDs along with their parameters).
+	3) The command ids are 2 bytes large.
+	4) The packets can be fragmented into multiple ones. Also there can be multiples
+	   packets chained togheter.
+
+	Tips:
+	As long as you are waiting for 4 bytes to read the size integer, then wait until
+	you have the amount of bytes the `size` is telling you, then you can proceed
+	that data section without worrying about anything else.
+
+	Exemple:
+	[00 00 00 0F] [00 03] [00 00 00 01] [00 07] [00 04] [...more]
+	
+	|--- Size ---|--------------- Data ---------------|
+
+	There is no way to know when a packet starts or end from both peer
+	(client or server) except from reading the actual content.
+
+	Here we have:
+	- A size of 10 because the Data section is 10 bytes long.
+	- The first 2 bytes will always be a command, here we have the command ID [00 03]
+	- Let's say that command require 2 parameters, an int, and a short.
+	  [00 00 00 01] [00 07]
+	- Okay we read all the parameters our command needed, the following two bytes
+	  must be a command ID then. We have the command [00 04].
+	- If there's more bytes to read, it's not part of this packet. Remember the `size`
+	  told us to read ONLY 10 bytes, so if we want to continue, we have to read another
+	  `size` from the packet. (Yes there can be many packets next to each others)
