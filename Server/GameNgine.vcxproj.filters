@@ -15,10 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\AcceptHandler.cpp">
+    <ClCompile Include="src\Acceptor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ReadHandler.cpp">
+    <ClCompile Include="src\Dispatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
@@ -29,13 +32,19 @@
     <ClInclude Include="include\config.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ReadHandler.h">
+    <ClInclude Include="include\Acceptor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\AcceptHandler.h">
+    <ClInclude Include="include\Client.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Dispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,5 @@
-#ifndef ACCEPT_HANDLER_H
-#define ACCEPT_HANDLER_H
+#ifndef ACCEPTOR_H
+#define ACCEPTOR_H
 
 //Configuration
 #include "config.h"
@@ -11,20 +11,20 @@
 #include <ace/INET_Addr.h>
 //Dependencies
 #include <iostream>
-#include "ReadHandler.h"
+#include "Client.h"
 
 //This accept handler is based on the provided solution from the ACE course.
-class AcceptHandler : public ACE_Event_Handler {
+class Acceptor : public ACE_Event_Handler {
 	private:
 		//The reactor to which the accept handler belongs.
-        ACE_Reactor *mReactor;
+        ACE_Reactor *m_reactor;
 		//The socket used for incoming conections.
-        ACE_SOCK_Acceptor mAcceptor;
+        ACE_SOCK_Acceptor m_acceptor;
     public:
 		//The reactor which will use this accept handler.
-        AcceptHandler(ACE_Reactor *reactor = 0);
+        Acceptor(ACE_Reactor *reactor = 0);
 		//The destructor exists for tracing purposes.
-        virtual ~AcceptHandler();
+        virtual ~Acceptor();
 		//Open the listening socket and register the handler with the reactor.
         //return 0 on success, -1 on failure
         int open();
@@ -40,4 +40,4 @@ class AcceptHandler : public ACE_Event_Handler {
         virtual int handle_close(ACE_HANDLE, ACE_Reactor_Mask);
 };
 
-#endif //ACCEPT_HANDLER_H
+#endif //ACCEPTOR_H

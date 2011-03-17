@@ -5,15 +5,17 @@
 #include "config.h"
 //ACE library
 #include <ace/Event_Handler.h>
-#include <ace/Log_Msg.h>
 #include <ace/Reactor.h>
 #include <ace/Signal.h>
 #include <ace/streams.h>
 #include <ace/Thread_Manager.h>
 #include <ace/Auto_Ptr.h>
+#include <ace/SOCK_Stream.h>
 //Dependencies
-#include "AcceptHandler.h"
+#include "Acceptor.h"
 #include <iostream>
+#include "Dispatcher.h"
+#include "Session.h"
 
 //Functions
 void setupSignals();

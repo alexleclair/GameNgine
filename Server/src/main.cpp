@@ -7,23 +7,29 @@ int ACE_TMAIN(int, ACE_TCHAR **) {
 	//--- MAIN CODE
 	printGraffiti();
 	std::cout << "Starting up...\n";
+	//Checking the dispatcher instance with a dummy session
+	std::cout << "Checking Dispatcher...\n";
+	if (!Dispatcher::getInstance(Session(ACE_SOCK_Stream()))) {
+		std::cerr << "Failed to allocate Dispatcher" << std::endl;
+		return -1;
+	}
 	//We want to create a normal reactor
-	std::cout << "Creating the Reactor...\n";
+	std::cout << "Creating the ACE_Reactor...\n";
 	ACE_Reactor reactor;
 	// create a new accept handler using that reactor
 	//(heap allocation because it's really not something you want in the stack)
-	std::cout << "Creating the AcceptHandler...\n";
-	ACE_Auto_Ptr<AcceptHandler> acceptHandler(new (ACE_nothrow) AcceptHandler(&reactor));
-	if (acceptHandler.get() == 0) {
-		std::cerr << "Failed to allocate AcceptHandler" << std::endl;
+	std::cout << "Creating the Acceptor...\n";
+	ACE_Auto_Ptr<Acceptor> acceptor(new (ACE_nothrow) Acceptor(&reactor));
+	if (acceptor.get() == 0) {
+		std::cerr << "Failed to allocate Acceptor" << std::endl;
 		return -1;
 	}
 	//Open the accept handler. Basically, this handler will register itself to the reactor
 	//and handle every ACCEPT_MASK events.
-    if (acceptHandler->open() == -1) {
+    if (acceptor->open() == -1) {
         //We couldn't open() it, we have a serious problem with the reactor.
 		//Forcefully free from memory the AcceptHandler object and terminate the program.
-        std::cerr << "Failed to open AcceptHandler. Exiting." << std::endl;
+        std::cerr << "Failed to open Acceptor. Exiting." << std::endl;
 		return -1;
     }
 	//We're ready!

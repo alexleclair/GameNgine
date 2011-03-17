@@ -84,15 +84,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\AcceptHandler.cpp" />
+    <ClCompile Include="src\Acceptor.cpp" />
+    <ClCompile Include="src\Dispatcher.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\ReadHandler.cpp" />
+    <ClCompile Include="src\Client.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AcceptHandler.h" />
+    <ClInclude Include="include\Acceptor.h" />
     <ClInclude Include="include\config.h" />
+    <ClInclude Include="include\Dispatcher.h" />
     <ClInclude Include="include\main.h" />
-    <ClInclude Include="include\ReadHandler.h" />
+    <ClInclude Include="include\Client.h" />
+    <ClInclude Include="include\Session.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
