@@ -10,6 +10,8 @@ Version 0.0.1 candidate
 	[Server]
 		+ Added an ASCII art at startup. (hereby named graffiti)
 		+ Added a core implementation of the ACE Reactor pattern.
+		+ Fixed Client's instantiation/dispatching mechanism.
+		+ Added a Packet class but it's not very optimized yet.
 
 ========================
        RELEASED

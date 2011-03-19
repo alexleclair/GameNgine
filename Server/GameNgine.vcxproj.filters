@@ -18,13 +18,13 @@
     <ClCompile Include="src\Acceptor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Dispatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Packet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,7 +44,7 @@
     <ClInclude Include="include\Session.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Dispatcher.h">
+    <ClInclude Include="include\Packet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

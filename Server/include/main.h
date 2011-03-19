@@ -14,7 +14,6 @@
 //Dependencies
 #include "Acceptor.h"
 #include <iostream>
-#include "Dispatcher.h"
 #include "Session.h"
 
 //Functions

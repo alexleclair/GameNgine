@@ -6,7 +6,7 @@
 #include <ace/SOCK_Stream.h>
 #include <ace/streams.h>
 #include "Session.h"
-#include "Dispatcher.h"
+#include "config.h"
 
 //This read handler is created by the accept handler and handles all the data
 //exchange between client and server.
@@ -16,6 +16,8 @@ class Client : public ACE_Event_Handler {
         ACE_SOCK_Stream m_stream;
 		//User's session
 		Session m_session;
+		//Static so we wont re-allocate it on stack every packet we get
+		static uint8_t m_buffer[NGINE_SOCKET_BUFFER];
 
     public:
 		//Initialization.

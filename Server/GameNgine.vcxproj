@@ -85,16 +85,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Acceptor.cpp" />
-    <ClCompile Include="src\Dispatcher.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Client.cpp" />
+    <ClCompile Include="src\Packet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Acceptor.h" />
     <ClInclude Include="include\config.h" />
-    <ClInclude Include="include\Dispatcher.h" />
     <ClInclude Include="include\main.h" />
     <ClInclude Include="include\Client.h" />
+    <ClInclude Include="include\Packet.h" />
     <ClInclude Include="include\Session.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

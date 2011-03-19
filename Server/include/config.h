@@ -6,6 +6,6 @@
 
 #define NGINE_VERSION_CANDIDATE "0.0.1"
 #define NGINE_PORT				4711
-#define NGINE_TIMEOUT			30 //Timeout value for connections (in seconds)
+#define NGINE_SOCKET_BUFFER		1024 //1024 bytes
 
 #endif //CONFIG_H

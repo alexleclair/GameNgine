@@ -7,12 +7,6 @@ int ACE_TMAIN(int, ACE_TCHAR **) {
 	//--- MAIN CODE
 	printGraffiti();
 	std::cout << "Starting up...\n";
-	//Checking the dispatcher instance with a dummy session
-	std::cout << "Checking Dispatcher...\n";
-	if (!Dispatcher::getInstance(Session(ACE_SOCK_Stream()))) {
-		std::cerr << "Failed to allocate Dispatcher" << std::endl;
-		return -1;
-	}
 	//We want to create a normal reactor
 	std::cout << "Creating the ACE_Reactor...\n";
 	ACE_Reactor reactor;
