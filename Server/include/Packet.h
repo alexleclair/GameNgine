@@ -15,50 +15,42 @@ public:
     //Constructors/destructors
     Packet(); //default constructor
     Packet(const Packet &obj); //copy constructor
-    Packet(uint8_t *new_array, unsigned short size); //Socket constructor (with content)
-    ~Packet();
     //std::string wrapper
-    uint32_t size();
-    void clear();
-    uint8_t operator[](int i);
-    void erase(int pos, int nb);
+    uint32_t    size();
+    void        clear();
+    void        erase(int pos, int nb);
+	void	    append(uint8_t *str, int size);
     //Creating packets
-    void addBool(bool cst);
-    void addString(std::string str);
-    void addString(const char *str);
+    void	    addBool(bool cst);
+    void	    addString(std::string &str);
+    void		addString(const char  *str);
     //Reading packets
-    bool readBool();
+	bool	    eof();
+    bool	    readBool();
     std::string readString();
-
-    //Tombana: Use this like: packet.read<int>(); and packet.read<uint32_t>();
-    template <typename T>
+	//Templates
+	template <typename T>
     T read(){
         if((m_seek + sizeof(T)) > m_buffer.size()) return T(); //This is the same as return 0; but it will also work for when T is a class
         T val = *reinterpret_cast<T*>((uint8_t*)m_buffer.c_str()+m_seek);
         m_seek += sizeof(T);
         return val;
     }
-
     template <typename T>
     void add(T hex) {
         m_buffer.append(reinterpret_cast<char*>(&hex), sizeof(T));
     }
-
-    void printHex();
-	void printHexFromSeek();
-    bool eof();
 	//Processing packets
-	std::string genStringPacket();
-	//Advanced commands:
-	//TODO: I don't recommend using any of the following unless you know what you are doing
-	void appendPacket(Packet &obj);
-    std::string& getRefBuffer(); //[Harmful]
-    void setSeek(unsigned int newSeek); //[Harmful]
-    void backSeek(unsigned int modSeek); //[Harmful]
-    
+	std::string genPacket();
+	//Advanced commands
+    void        setSeek(uint32_t newSeek); //[Harmful]
+    void        backSeek(uint32_t modSeek); //[Harmful]
+    //Debugging
+    void        printHex();
+	void        printHexFromSeek();
 private:
     std::string m_buffer;
-    unsigned int m_seek;
+    uint32_t    m_seek;
 };
 
 #endif //PACKET_H

@@ -23,8 +23,7 @@ ACE_HANDLE Client::get_handle() const {
 int Client::handle_input(ACE_HANDLE handle) {
     int received; //no need to initialize, will be set below
 	while ((received = m_session.socket.recv(&m_buffer, NGINE_SOCKET_BUFFER)) > 0) {
-		Packet input(m_buffer, received);
-		m_session.buffer.appendPacket(input);
+		m_session.buffer.append(m_buffer, received);
 		std::cout << "Input: ";
 		m_session.buffer.printHex();
 		std::cout << "\n";
