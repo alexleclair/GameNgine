@@ -5,6 +5,9 @@
 #include <string>
 #include <stdint.h>
 
+#include "protocol.h"
+#include <ace/SOCK_Stream.h>
+
 //TODO: We should inline some of theses functions.
 //A assembly 'CALL' for theses small functions seems a little too much.
 //I'm pretty sure Visual C++ will optimise this class but I'm not sure about all compilers.
@@ -16,7 +19,7 @@ public:
     Packet(); //default constructor
     Packet(const Packet &obj); //copy constructor
     //std::string wrapper
-    uint32_t    size();
+    SIZE_PCKT   size();
     void        clear();
     void        erase(int pos, int nb);
 	void	    append(uint8_t *str, int size);
@@ -42,6 +45,7 @@ public:
     }
 	//Processing packets
 	std::string genPacket();
+	void	    send(ACE_SOCK_Stream& sock);
 	//Advanced commands
     void        setSeek(uint32_t newSeek); //[Harmful]
     void        backSeek(uint32_t modSeek); //[Harmful]

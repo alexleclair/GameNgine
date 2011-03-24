@@ -10,6 +10,12 @@ Packet::Packet(const Packet &obj) {
     m_seek = obj.m_seek;
 }
 
+void Packet::send(ACE_SOCK_Stream& sock) {
+	if (sock.send_n(genPacket().c_str(), m_buffer.size()+4) != 1) {
+		std::cerr << "[Packet] Failed to send packet." << std::endl;
+	}
+}
+
 void Packet::erase(int pos, int nb) {
     m_buffer.erase(pos, nb);
 }
@@ -19,12 +25,12 @@ bool Packet::eof() {
 }
 
 void Packet::addString(const char *str) {
-    add<uint32_t>(strlen(str));
+    add<SIZE_STRING>(strlen(str));
     m_buffer.append(str);
 }
 
 void Packet::addString(std::string &str) {
-    add<uint32_t>(str.size());
+    add<SIZE_STRING>(str.size());
     m_buffer.append(str);
 }
 
@@ -49,14 +55,14 @@ void Packet::append(uint8_t *str, int size) {
 	m_buffer.append(reinterpret_cast<char*>(str), size);
 }
 
-uint32_t Packet::size() {
-	return static_cast<uint32_t>(m_buffer.size());
+SIZE_PCKT Packet::size() {
+	return static_cast<SIZE_PCKT>(m_buffer.size());
 }
 
 std::string Packet::genPacket() {
     std::string output;
-	uint32_t size = m_buffer.size();
-	output.append(reinterpret_cast<char*>(&size), sizeof(uint32_t));
+	SIZE_PCKT size = m_buffer.size();
+	output.append(reinterpret_cast<char*>(&size), sizeof(SIZE_PCKT));
 	output.append(m_buffer);
     return output;
 }

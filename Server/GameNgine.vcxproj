@@ -95,6 +95,7 @@
     <ClInclude Include="include\main.h" />
     <ClInclude Include="include\Client.h" />
     <ClInclude Include="include\Packet.h" />
+    <ClInclude Include="include\protocol.h" />
     <ClInclude Include="include\Session.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

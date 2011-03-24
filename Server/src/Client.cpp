@@ -25,17 +25,15 @@ int Client::handle_input(ACE_HANDLE handle) {
 	while ((received = m_session.socket.recv(&m_buffer, NGINE_SOCKET_BUFFER)) > 0) {
 		m_session.buffer.append(m_buffer, received);
 		std::cout << "Input: ";
-		m_session.buffer.printHex();
+		m_session.buffer.printHex(); 
 		std::cout << "\n";
 	}
+	/* -------- Doesn't work! --------
+	Packet testPacket;
+	testPacket.add<CMD>(PCKT_WELCOME);
+	testPacket.send(m_stream);
+	---------------------------------- */
 	return (!received ? -1 : 0); //when !received, peer disconnected, return -1.
-	/*
-	unsigned char response = 'K';
-	if (m_session->socket.send_n(&response, sizeof(response), &connTimeout) != 1) {
-		std::cerr << "[Dispatcher] Failed to send test byte." << std::endl;
-	}
-	return 0;
-	*/
 }
 
 int Client::handle_close(ACE_HANDLE, ACE_Reactor_Mask) {
