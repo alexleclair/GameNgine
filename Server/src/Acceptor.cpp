@@ -48,18 +48,26 @@ int Acceptor::handle_input(ACE_HANDLE) {
 		std::cerr << "[Acceptor] Failed to accept client connection." << std::endl;
 		return -1;
 	}
-    //Register the session(read handler) with the reactor
-    if (m_reactor->register_handler(client, ACE_Event_Handler::READ_MASK) == -1) {
-		std::cerr << "[Acceptor] Failed to register Acceptor." << std::endl;
-		return -1;
+	//Signal our client the socket has been accepted (forged member function)
+	if (client->handle_accept() == -1) {
+		std::cerr << "[Acceptor] The client instance refused to handle this stream." << std::endl;
+		//Closing the stream just in case (I love doing things gracefully)
+		client->getStream().close();
+		//Then we don't care about the rest, our client instance will get destroyed
+		//at the end of this scope by our previously set security system: auto_ptr.
+	} else {
+		//Register the client(read handler) with the reactor
+		if (m_reactor->register_handler(client, ACE_Event_Handler::READ_MASK) == -1) {
+			std::cerr << "[Acceptor] Failed to register Acceptor." << std::endl;
+			return -1;
+		}
+		//From now on, the client takes care of itself
+		pR.release();
 	}
-    //From now on, the Session takes care of itself
-    pR.release();
     return 0; // keep going
 }
 
 int Acceptor::handle_close(ACE_HANDLE, ACE_Reactor_Mask) {
-	std::cout << "Acceptor::handle_close()\n";
 	//Close the listening socket
     if (m_acceptor.close() == -1)
 		std::cerr << "[Acceptor] Failed to close the socket." << std::endl;

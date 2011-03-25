@@ -28,6 +28,7 @@ class Client : public ACE_Event_Handler {
         virtual ~Client();
 		//Provide access to the internal stream socket.
         ACE_SOCK_Stream &getStream(void);
+		int handle_accept(); //forged member function, ACE is missing this
 
         //--- Overridden methods from the ACE_Event_Handler BELOW ---
         

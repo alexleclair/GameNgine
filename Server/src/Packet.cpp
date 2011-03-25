@@ -11,7 +11,7 @@ Packet::Packet(const Packet &obj) {
 }
 
 void Packet::send(ACE_SOCK_Stream& sock) {
-	if (sock.send_n(genPacket().c_str(), m_buffer.size()+4) != 1) {
+	if (sock.send_n(genPacket().c_str(), m_buffer.size()+sizeof(SIZE_PCKT)) == -1) { //+ the `size` header's size
 		std::cerr << "[Packet] Failed to send packet." << std::endl;
 	}
 }
@@ -84,8 +84,8 @@ void Packet::backSeek(uint32_t modSeek) {
 }
 
 void Packet::printHex() {
-    unsigned int size = m_buffer.size();
-    for (unsigned int i=0; i<size; i++) {
+    SIZE_PCKT size = m_buffer.size();
+    for (uint32_t i=0; i<size; i++) {
         if (i == size-1) {
             printf("%02X", (uint8_t) m_buffer.at(i));
         } else {
@@ -95,8 +95,8 @@ void Packet::printHex() {
 }
 
 void Packet::printHexFromSeek() {
-    unsigned int size = m_buffer.size();
-    for (unsigned int i=m_seek; i<size; i++) {
+    SIZE_PCKT size = m_buffer.size();
+    for (uint32_t i=m_seek; i<size; i++) {
         if (i == size-1) {
             printf("%02X", (uint8_t) m_buffer.at(i));
         } else {
